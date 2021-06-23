@@ -1,0 +1,34 @@
+{
+    "name": "generator-econtrat",
+    "version": "1.0.2",
+    "description": "EContrat generator",
+    "main": "index.js",
+    "files": [
+        "app"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/owerfelli/generator-econtrat.git"
+    },
+    "author": "Oussama Werfelli",
+    "license": "MIT",
+    "dependencies": {
+        "chalk": "^2.3.1",
+        "loadash": "^1.0.0",
+        "lodash": "^4.17.21",
+        "yeoman-generator": "^2.0.5"
+    },
+    "keywords": [
+        "yeoman-generator",
+        "scaffold",
+        "generator",
+        "framework"
+    ],
+    "bugs": {
+        "url": "https://github.com/owerfelli/generator-econtrat/issues"
+    },
+    "homepage": "https://github.com/owerfelli/generator-econtrat#readme"
+}
