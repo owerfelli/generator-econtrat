@@ -28,6 +28,6 @@ npm install -g generator-econtrat
 Using
 in your directory run 
 ```bash
-yo generator-econtrat
+yo econtrat
 ```
 This will ask you a number of questions and then generate webscript(s) based on your answers
