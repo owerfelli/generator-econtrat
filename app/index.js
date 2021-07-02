@@ -77,11 +77,34 @@ module.exports = class extends Generator {
                 option: {name: 'package', config: {alias: 'i', desc: 'package', type: String}},
                 message: 'What your ' + chalk.yellow('package') + ' name?',
                 default: ['com.elis'],
+            },
+            {
+                type: 'checkbox',
+                name: 'resources',
+                message: 'Witch resource do you want to expose:',
+                choices: [
+                    {
+                        name: 'create',
+                        value: 'create',
+                    }, {
+                        name: 'update',
+                        value: 'update'
+
+                    }, {
+                        name: 'delete',
+                        value: 'delete'
+                    }, {
+                        name: 'find one',
+                        value: 'findOne'
+                    }, {
+                        name: 'find all',
+                        value: 'findAll'
+                    }
+                ]
             }
 
 
         ]).then((answers) => {
-
             this.context = {
                 classPackage: answers.package,
                 className: _.upperFirst(_.camelCase(answers.id)),
@@ -91,6 +114,7 @@ module.exports = class extends Generator {
             }
             this.fields = [];
             this.relationships = [];
+            this.resources = answers.resources;
         });
         this.printFields();
     }
@@ -109,6 +133,7 @@ module.exports = class extends Generator {
         ];
         return this.prompt(prompts).then(props => {
             let entity = JSON.parse(props.entity);
+
             for (const fieldName in entity) {
                 console.log(fieldName, entity[fieldName])
                 const field = {
@@ -131,6 +156,7 @@ module.exports = class extends Generator {
             }
             context.fields = this.fields;
             context.relationships = [];
+            context.resources = this.resources;
             this.fs.copyTpl(this.templatePath('**/*'), this.destinationPath(), context);
         })
     }

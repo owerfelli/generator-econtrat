@@ -21,12 +21,12 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/<%- attributeName %>s")
+@RequestMapping("/<%- attributeName %>")
 @RequiredArgsConstructor
 public class <%- className %>Controller {
 
     private final <%- className %>Adapter <%- attributeName %>Adapter;
-
+<%_ if (resources.indexOf('findAll')> -1) { _%>
     @Operation(summary = "View a list of available <%- attributeName %>s")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved <%- attributeName %>s",
@@ -37,7 +37,8 @@ public class <%- className %>Controller {
     public ResponseEntity<List<<%- className %>Dto>> searchAll<%- className %>() {
         return ResponseEntity.ok(<%- attributeName %>Adapter.searchAll<%- className %>());
     }
-
+<%_ } _%>
+<%_ if (resources.indexOf('create')> -1) { _%>
     @Operation(summary = "Add a <%- attributeName %>")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Successfully added <%- attributeName %>"),
@@ -54,7 +55,8 @@ public class <%- className %>Controller {
                 .toUri();
         return ResponseEntity.created(location).build();
     }
-
+<%_ } _%>
+<%_ if (resources.indexOf('findOne')> -1) { _%>
     @Operation(summary = "Search <%- attributeName %> by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved <%- attributeName %>",
@@ -76,7 +78,8 @@ public class <%- className %>Controller {
         resource.add(linkToBuilder.withRel("all-<%- attributeName %>s"));
         return ResponseEntity.ok(resource);
     }
-
+<%_ } _%>
+<%_ if (resources.indexOf('delete')> -1) { _%>
     @Operation(summary = "Delete <%- attributeName %>")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Successfully deleted <%- attributeName %>"),
@@ -87,7 +90,8 @@ public class <%- className %>Controller {
         <%- attributeName %>Adapter.delete<%- className %>(id);
         return ResponseEntity.noContent().build();
     }
-
+<%_ } _%>
+<%_ if (resources.indexOf('update')> -1) { _%>
     @Operation(summary = "Update <%- attributeName %>")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "204", description = "Successfully updated <%- attributeName %>"),
@@ -98,5 +102,5 @@ public class <%- className %>Controller {
         <%- attributeName %>Adapter.update<%- className %>(id<%- className %>, <%- attributeName %>);
         return ResponseEntity.noContent().build();
     }
-
+<%_ } _%>
 }
