@@ -26,8 +26,8 @@ npm install -g generator-econtrat
 ```
 
 Using
-in your directory run 
+in your root package run 
 ```bash
 yo econtrat
 ```
-This will ask you a number of questions and then generate webscript(s) based on your answers
+This will ask you a number of questions and then generate crud service based on your answers
